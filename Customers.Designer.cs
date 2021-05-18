@@ -56,8 +56,12 @@ namespace Proiect_PAW
             this.btnMain = new System.Windows.Forms.ToolStripButton();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.btnExportCSV = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -110,6 +114,7 @@ namespace Proiect_PAW
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(100, 20);
             this.tbName.TabIndex = 4;
+            this.tbName.Validating += new System.ComponentModel.CancelEventHandler(this.tbName_Validating);
             // 
             // tbSurname
             // 
@@ -117,6 +122,7 @@ namespace Proiect_PAW
             this.tbSurname.Name = "tbSurname";
             this.tbSurname.Size = new System.Drawing.Size(100, 20);
             this.tbSurname.TabIndex = 5;
+            this.tbSurname.Validating += new System.ComponentModel.CancelEventHandler(this.tbSurname_Validating);
             // 
             // tbSerial
             // 
@@ -124,6 +130,7 @@ namespace Proiect_PAW
             this.tbSerial.Name = "tbSerial";
             this.tbSerial.Size = new System.Drawing.Size(100, 20);
             this.tbSerial.TabIndex = 6;
+            this.tbSerial.Validating += new System.ComponentModel.CancelEventHandler(this.tbSerial_Validating);
             // 
             // tbNumber
             // 
@@ -131,6 +138,7 @@ namespace Proiect_PAW
             this.tbNumber.Name = "tbNumber";
             this.tbNumber.Size = new System.Drawing.Size(100, 20);
             this.tbNumber.TabIndex = 7;
+            this.tbNumber.Validating += new System.ComponentModel.CancelEventHandler(this.tbNumber_Validating);
             // 
             // btnAddNewC
             // 
@@ -284,6 +292,34 @@ namespace Proiect_PAW
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnExportCSV});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 327);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(699, 22);
+            this.statusStrip1.TabIndex = 17;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // btnExportCSV
+            // 
+            this.btnExportCSV.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnExportCSV.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toCSVToolStripMenuItem});
+            this.btnExportCSV.Image = ((System.Drawing.Image)(resources.GetObject("btnExportCSV.Image")));
+            this.btnExportCSV.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExportCSV.Name = "btnExportCSV";
+            this.btnExportCSV.Size = new System.Drawing.Size(52, 20);
+            this.btnExportCSV.Text = "Export";
+            // 
+            // toCSVToolStripMenuItem
+            // 
+            this.toCSVToolStripMenuItem.Name = "toCSVToolStripMenuItem";
+            this.toCSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.toCSVToolStripMenuItem.Text = "To CSV";
+            this.toCSVToolStripMenuItem.Click += new System.EventHandler(this.toCSVToolStripMenuItem_Click);
+            // 
             // Customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -291,6 +327,7 @@ namespace Proiect_PAW
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(699, 349);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.btnSearch);
@@ -313,6 +350,8 @@ namespace Proiect_PAW
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +384,8 @@ namespace Proiect_PAW
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.ToolStripButton btnMain;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripDropDownButton btnExportCSV;
+        private System.Windows.Forms.ToolStripMenuItem toCSVToolStripMenuItem;
     }
 }

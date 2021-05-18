@@ -326,7 +326,7 @@ namespace Proiect_PAW
             // 
             this.btnclipboard.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnclipboard.ForeColor = System.Drawing.Color.Black;
-            this.btnclipboard.Location = new System.Drawing.Point(144, 333);
+            this.btnclipboard.Location = new System.Drawing.Point(157, 429);
             this.btnclipboard.Name = "btnclipboard";
             this.btnclipboard.Size = new System.Drawing.Size(100, 23);
             this.btnclipboard.TabIndex = 15;

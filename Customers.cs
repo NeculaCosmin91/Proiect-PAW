@@ -49,12 +49,12 @@ namespace Proiect_PAW
             }
             if (Serial.Trim().Length != 2)
             {
-                errorProvider1.SetError(tbSerial, "Eroare serie");
+                errorProvider1.SetError(tbSerial, "Only 2 characters");
                 formValid = false;
             }
             if (tbNumber.TextLength != 6)
             {
-                errorProvider1.SetError(tbNumber, "6 cifre");
+                errorProvider1.SetError(tbNumber, "6 numbers");
                 formValid = false;
             }
             if (!formValid)
@@ -265,6 +265,66 @@ namespace Proiect_PAW
 
                 customers.Remove(customer);
             }
+        }
+
+        private void toCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.Filter = "CSV | *.csv";
+            saveFile.Title = "Export as csv";
+
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter sw = new StreamWriter(saveFile.FileName))
+                {
+                    sw.WriteLine("Name, Surname, Serial, Number");
+
+                    foreach (Customer c in customers)
+                    {
+                        sw.WriteLine($"{c.Name},{c.Surname},{c.Serial} {c.Number.ToString()} ");
+                    }
+                }
+            }
+        }
+
+        private void tbName_Validating(object sender, CancelEventArgs e)
+        {
+            if (tbName.Text.Trim().Length < 2)
+            {
+                errorProvider1.SetError(tbName, "Minim 2 characters");
+            }
+            else
+                errorProvider1.SetError(tbName, null);
+        }
+
+        private void tbSurname_Validating(object sender, CancelEventArgs e)
+        {
+            if (tbSurname.Text.Trim().Length < 2)
+            {
+                errorProvider1.SetError(tbSurname, "Minim 2 characters");
+            }
+            else
+                errorProvider1.SetError(tbSurname, null);
+        }
+
+        private void tbSerial_Validating(object sender, CancelEventArgs e)
+        {
+            if (tbSerial.Text.Trim().Length != 2)
+            {
+                errorProvider1.SetError(tbSerial, "Serial is made of 2 characters");
+            }
+            else
+                errorProvider1.SetError(tbSerial, null);
+        }
+
+        private void tbNumber_Validating(object sender, CancelEventArgs e)
+        {
+            if (tbNumber.TextLength != 6)
+            {
+                errorProvider1.SetError(tbNumber, "Number is made of 6 numbers");
+            }
+            else
+                errorProvider1.SetError(tbNumber, null);
         }
     }
 }
