@@ -138,6 +138,7 @@ namespace Proiect_PAW
             this.tbNumber.Name = "tbNumber";
             this.tbNumber.Size = new System.Drawing.Size(100, 20);
             this.tbNumber.TabIndex = 7;
+            this.tbNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNumber_KeyPress);
             this.tbNumber.Validating += new System.ComponentModel.CancelEventHandler(this.tbNumber_Validating);
             // 
             // btnAddNewC
@@ -316,7 +317,7 @@ namespace Proiect_PAW
             // toCSVToolStripMenuItem
             // 
             this.toCSVToolStripMenuItem.Name = "toCSVToolStripMenuItem";
-            this.toCSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.toCSVToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.toCSVToolStripMenuItem.Text = "To CSV";
             this.toCSVToolStripMenuItem.Click += new System.EventHandler(this.toCSVToolStripMenuItem_Click);
             // 

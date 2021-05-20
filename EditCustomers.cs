@@ -17,11 +17,6 @@ namespace Proiect_PAW
 
     public partial class EditCustomers : Form
     {
-
-        private readonly SQLiteConnection connection;
-        private string ConnectionString = "Data source=DBproiect.db";
-        private readonly SQLiteDataAdapter adapter;
-
         private readonly Customer customer;
         public EditCustomers(Customer customers)
         {
@@ -45,48 +40,6 @@ namespace Proiect_PAW
             customer.Surname = tbSurname.Text;
             customer.Serial = tbSerial.Text;
             customer.Number = Convert.ToInt32(tbNumber.Text);
-            if (MessageBox.Show("Are you sure?", " Change Customer", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
-                try
-                {
-                    EditCustomer(customer);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
-
-
-        }
-
-        private void EditCustomer(Customer customer)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void EditCustomer(Customers customer)
-        {
-
-            string update = "Update Customers SET Name=@Name, Surname=@Surname, Serial=@Serial, Number=@Number WHERE " +
-                "Id=@Id";
-            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
-            {
-                connection.Open();
-                SQLiteCommand command = new SQLiteCommand(update, connection);
-                command.Parameters.Add(
-                        new SQLiteParameter("@Name", DbType.String, "Name"));
-                command.Parameters.Add(
-                    new SQLiteParameter("@Surname", DbType.String, "Surname"));
-                command.Parameters.Add(
-                    new SQLiteParameter("@Serial", DbType.String, "Serial"));
-                command.Parameters.Add(
-                    new SQLiteParameter("@Number", DbType.Int32, "Number"));
-                
-
-                command.ExecuteNonQuery();
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)

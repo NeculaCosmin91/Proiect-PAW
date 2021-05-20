@@ -54,7 +54,7 @@ namespace Proiect_PAW
             }
             if (tbNumber.TextLength != 6)
             {
-                errorProvider1.SetError(tbNumber, "6 numbers");
+                errorProvider1.SetError(tbNumber, "6 digits");
                 formValid = false;
             }
             if (!formValid)
@@ -196,6 +196,7 @@ namespace Proiect_PAW
                 EditCustomers edit = new EditCustomers(C);
                 if (edit.ShowDialog() == DialogResult.OK)
                 {
+                    EditCustomers(C);
                     DisplayCustomers();
                 }
             }
@@ -209,19 +210,26 @@ namespace Proiect_PAW
             mainForm.Show();
         }
 
-        private void EditCustomer(Customers customer)
+        private void EditCustomers(Customer CS)
         {
-            var update = new SQLiteCommand("Update Customers SET Name=@Name, Surname=@Surname, Serial=@Serial, Number=@Number WHERE " +
-                "Id=@Id", connection);
-            update.Parameters.Add(
-                    new SQLiteParameter("@Name", DbType.String, "Name"));
-            update.Parameters.Add(
-                new SQLiteParameter("@Surname", DbType.String, "Surname"));
-            update.Parameters.Add(
-                new SQLiteParameter("@Serial", DbType.String, "Serial"));
-            update.Parameters.Add(
-                new SQLiteParameter("@Number", DbType.Int32, "Number"));
-            adapter.UpdateCommand = update;
+            var query = "Update customers SET Name = @Name, Surname = @Surname, Serial = @Serial, " +
+                "Number = @Number" + " WHERE Id=" + CS.Id + " ";
+
+
+            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+            {
+                connection.Open();
+                var comanda = new SQLiteCommand(query, connection);
+
+                comanda.Parameters.AddWithValue("@Name", CS.Name);
+                comanda.Parameters.AddWithValue("@Surname", CS.Surname);
+                comanda.Parameters.AddWithValue("@Serial", CS.Serial);
+                comanda.Parameters.AddWithValue("@Number", CS.Number);
+                
+                comanda.ExecuteNonQuery();
+
+            }
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -325,6 +333,15 @@ namespace Proiect_PAW
             }
             else
                 errorProvider1.SetError(tbNumber, null);
+        }
+
+        private void tbNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+      (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

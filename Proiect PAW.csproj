@@ -77,9 +77,11 @@
     <Compile Include="Charts.cs" />
     <Compile Include="ChartsCustomForm.cs">
       <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ChartsCustomForm.Designer.cs">
       <DependentUpon>ChartsCustomForm.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ChartsForm.cs">
       <SubType>Form</SubType>
@@ -100,6 +102,12 @@
     </Compile>
     <Compile Include="EditCustomers.Designer.cs">
       <DependentUpon>EditCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditShares.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditShares.Designer.cs">
+      <DependentUpon>EditShares.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCharts.cs">
       <SubType>Form</SubType>
@@ -144,6 +152,10 @@
     <EmbeddedResource Include="AuthorisezConsultants.resx">
       <DependentUpon>AuthorisezConsultants.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChartsCustomForm.resx">
+      <DependentUpon>ChartsCustomForm.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChartsForm.resx">
       <DependentUpon>ChartsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditCustomers.resx">
       <DependentUpon>EditCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditShares.resx">
+      <DependentUpon>EditShares.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCharts.resx">
       <DependentUpon>FormCharts.cs</DependentUpon>

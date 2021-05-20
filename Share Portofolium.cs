@@ -18,6 +18,7 @@ using System.Windows;
 
 
 
+
 namespace Proiect_PAW
 {
     public partial class Share_Portofolium : Form
@@ -27,6 +28,7 @@ namespace Proiect_PAW
         private string ConnectionString = "Data source=DBproiect.db";
         private readonly SQLiteDataAdapter adapter;
         private readonly DataSet dataSet;
+        SQLiteDataReader dr;
 
         
         private List<Shares> shares;
@@ -75,6 +77,30 @@ namespace Proiect_PAW
         {
             try
             {
+                var query = "SELECT * FROM Shares ORDER BY Name";
+                using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+                {
+                    SQLiteCommand comanda = new SQLiteCommand(query, connection);
+                    connection.Open();
+                    using (SQLiteDataReader reader = comanda.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            comboBox1.Items.Add(reader["Name"]);
+                        }
+                        reader.Close();
+                        connection.Close();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+            try
+            {
+              
                 LoadShares();
                 DisplayShare();
             }
@@ -105,20 +131,7 @@ namespace Proiect_PAW
 
             }
         }
-        private void EditShare(Shares actiune)
-        {
-            var update = new SQLiteCommand("Update Shares SET Name=@Name, Price=@Price, Company=@Company WHERE " +
-                "Id=@Id", connection);
-            update.Parameters.Add(
-                    new SQLiteParameter("@Name", DbType.String, "Name"));
-            update.Parameters.Add(
-                new SQLiteParameter("@Price", DbType.String, "Price"));
-            update.Parameters.Add(
-                new SQLiteParameter("@Company", DbType.String, "Company"));
-            adapter.UpdateCommand= update;
-        }
-        
-        
+       
         private void LoadShares()
         {
             var query = "SELECT * FROM Shares";
@@ -319,6 +332,42 @@ namespace Proiect_PAW
         }
         private void btnEditShares_Click(object sender, EventArgs e)
         {
+            if (lvShares.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Choose a share!");
+            }
+            else
+            {
+                ListViewItem selecteditem = lvShares.SelectedItems[0];
+                Shares S = (Shares)selecteditem.Tag;
+
+                EditShares edit = new EditShares(S);
+                if (edit.ShowDialog() == DialogResult.OK)
+                {
+                    Editshare(S);
+                    DisplayShare();
+                }
+            }
+        }
+        private void Editshare(Shares S)
+        {
+            var query = "Update Shares SET Name = @Name, Price = @Price, Company = @Company " 
+                 + " WHERE Id=" + S.Id + " ";
+
+
+            using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+            {
+                connection.Open();
+                var comanda = new SQLiteCommand(query, connection);
+
+                comanda.Parameters.AddWithValue("@Name", S.Name);
+                comanda.Parameters.AddWithValue("@Price", S.Price);
+                comanda.Parameters.AddWithValue("@Company", S.Company);
+                
+
+                comanda.ExecuteNonQuery();
+
+            }
 
         }
 
@@ -424,6 +473,8 @@ namespace Proiect_PAW
             mainForm.FormClosed += (s, args) => this.Close();
             mainForm.Show();
         }
+
+        
     }
     
 
