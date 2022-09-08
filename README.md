@@ -3,7 +3,15 @@
 Proiect realizat in anul 2, semestrul 2 la materia Programarea Aplicatiilor Windows
 
 Aplicatie Windows pentru gestiunea actiunilor si clientilor.
-Salvarea datelor se face intr-un fisier cu extensia .db salvat in /bin/debug
+Salvarea datelor se face intr-un fisier cu extensia .db salvat in ../bin/debug
+Functionalitati implementate: 
+1) Serializare si deserializare
+2) Print Preview
+3) Print
+4) Export (.csv)
+5) Copy to clipboard
+6) WebBrowser (navigare web in cadrul aplicatiei)
+7) Drag and drop
 
 I. Login
 
