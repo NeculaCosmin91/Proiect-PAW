@@ -15,6 +15,8 @@ II. Meniu principal
 
 ![image](https://user-images.githubusercontent.com/75160001/188439449-17bb8488-6d7b-4d9e-8da5-96327a2671e3.png)
 
+Meniul principal este impartit in 2 sectiuni. In zona din stanga utilizatorul poate naviga catre cele 4 implementari (vor fi detaliate mai jos) din cadrul aplicatiei, iar in partea de sus poate accesa site-urile respective.
+
 
 III. Shares (Actiuni)
 
