@@ -4,6 +4,7 @@ Proiect realizat in anul 2, semestrul 2 la materia Programarea Aplicatiilor Wind
 
 Aplicatie Windows pentru gestiunea actiunilor si clientilor.
 Salvarea datelor se face intr-un fisier cu extensia .db salvat in ../bin/debug
+
 Functionalitati implementate: 
 1) Serializare si deserializare
 2) Print Preview
